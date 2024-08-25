@@ -12,13 +12,7 @@ class Solution:
         
         out = []
         for i in range(len(freq)-1, 0, -1):
-            if k > 0:
-                avail = len(freq[i])
-                if avail > k:
-                    out = out + freq[i][:k]
-                else :
-                    out = out + freq[i]
-                k -= avail
-            else:
-                break
-        return out
+            for j in freq[i]:
+                out.append(j)
+                if len(out) == k:
+                    return out
