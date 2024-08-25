@@ -2,8 +2,9 @@ class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         counts = {}
         # Counter alternative
-        for i in nums:
-            counts[i] = 1 + counts.get(i, 0)
+        counts = Counter(nums)
+        # for i in nums:
+        #     counts[i] = 1 + counts.get(i, 0)
         
         freq = [[] for _ in range(len(nums)+1)]
 
