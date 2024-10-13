@@ -22,10 +22,10 @@ class Solution:
                     if (r - l + 1) < resLen:
                         res = [l, r]
                         resLen = r - l + 1
-                    
-                    newC = s[l]
-                    
-                    if newC in countT :
+                
+  
+                    if s[l] in countT :
+                        newC = s[l]  
                         window[newC] -= 1
                         if window[newC] < countT[newC]:
                             have -= 1
