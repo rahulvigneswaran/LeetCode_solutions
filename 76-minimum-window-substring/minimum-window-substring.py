@@ -23,9 +23,8 @@ class Solution:
                         res = [l, r]
                         resLen = r - l + 1
                 
-  
-                    if s[l] in countT :
-                        newC = s[l]  
+                    newC = s[l]    
+                    if newC in countT :
                         window[newC] -= 1
                         if window[newC] < countT[newC]:
                             have -= 1
