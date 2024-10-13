@@ -8,7 +8,7 @@ class Solution:
             countT[c] = 1 + countT.get(c, 0)
 
         have, need = 0, len(countT)
-        res, resLen = [-1, -1], float("infinity")
+        res, resLen = [-1, -1], len(s)+1
         l = 0
         for r in range(len(s)):
             c = s[r]
@@ -30,4 +30,4 @@ class Solution:
                             have -= 1
                     l += 1
         l, r = res
-        return s[l : r + 1] if resLen != float("infinity") else ""
+        return s[l : r + 1] if resLen != len(s)+1 else ""
