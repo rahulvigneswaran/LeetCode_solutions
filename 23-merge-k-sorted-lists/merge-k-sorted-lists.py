@@ -37,4 +37,4 @@ def merge2List(l1, l2):
     
     return res.next
 
-        
+# we should do the same merging of 2 lists but do it in a merge sort fashion
