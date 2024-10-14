@@ -2,32 +2,30 @@ class Solution:
     def minWindow(self, s: str, t: str) -> str:
         if len(s) < len(t):
             return ""
+        targetCount = Counter(t)
+        window = {}
+        have = 0 
+        need = len(targetCount)
+        L = 0
+        res = [ ]
+        resLen = float("inf")
 
-        countT, window = {}, {}
-        for c in t:
-            countT[c] = 1 + countT.get(c, 0)
-
-        have, need = 0, len(countT)
-        res, resLen = [-1, -1], len(s)+1
-        l = 0
-        for r in range(len(s)):
-            c = s[r]
-            if c in countT:
-                window[c] = 1 + window.get(c, 0)
-                if window[c] == countT[c]:
-                    have += 1
-
-                while have == need:
-                    # update our result
-                    if (r - l + 1) < resLen:
-                        res = [l, r]
-                        resLen = r - l + 1
+        for R in range(len(s)):
+            letter = s[R]
+            window[letter] = window.get(letter, 0) + 1
+            if letter in targetCount and window[letter] == targetCount[letter]:
+                have+=1
                 
-                    newC = s[l]    
-                    if newC in countT :
-                        window[newC] -= 1
-                        if window[newC] < countT[newC]:
-                            have -= 1
-                    l += 1
-        l, r = res
-        return s[l : r + 1] if resLen != len(s)+1 else ""
+            while have == need:
+                slideLetter = s[L]
+                if (R - L + 1) < resLen:
+                    res = [L,R]
+                    resLen = R - L + 1
+                window[slideLetter]-=1
+                if slideLetter in targetCount and window[slideLetter] < targetCount[slideLetter]:
+                    have-=1
+                L+=1
+        
+        return s[res[0]:res[1]+1] if resLen != float("inf") else ""
+
+# Have, Need. If have = Need, increase L. If have < Need increase R
