@@ -30,6 +30,8 @@ class MedianFinder:
         else:
             return (-1*self.left[0] + self.right[0]) / 2
 
+# Brute Force : Whenever you insert, search and place it in correct sorted positiion.
+# Better : Use two heaps. Max heap (multiply by -1) for left and min heap for right. Always insert to the left heap. Then work out the edge cases. left and right should have equal (or +1) elements. Left should always be lesser than right. heapq.heappush(arr, val), heapq.heappop(arr), arr[0]
 
 # Your MedianFinder object will be instantiated and called as such:
 # obj = MedianFinder()
