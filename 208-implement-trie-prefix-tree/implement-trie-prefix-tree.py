@@ -38,7 +38,7 @@ class Trie:
             return False
 
         return dfs(curr)
-
+# Hashmap to track children. isWord boolean to mark indicate if its a word. Use curr = self. Then cycle through the nodes.
 
 # Your Trie object will be instantiated and called as such:
 # obj = Trie()
