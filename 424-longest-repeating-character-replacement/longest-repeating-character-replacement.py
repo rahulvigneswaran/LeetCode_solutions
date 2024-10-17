@@ -16,3 +16,6 @@ class Solution:
             res = max(res, R-L+1)
         
         return res
+
+# Keep Count and maxCount. Iterate R. Iterate L whenever (R-L+1) - maxCount > l.
+# Optimized solution >> Time : O(n). Space : O(n)
