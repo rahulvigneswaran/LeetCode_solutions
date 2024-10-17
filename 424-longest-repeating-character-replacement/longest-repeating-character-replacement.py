@@ -18,4 +18,4 @@ class Solution:
         return res
 
 # Keep Count and maxCount. Iterate R. Iterate L whenever (R-L+1) - maxCount > l.
-# Optimized solution >> Time : O(n*m). Space : O(n*m). n is words. m is len of words.
+# Optimized solution >> Time : O(n). Space : O(n)
