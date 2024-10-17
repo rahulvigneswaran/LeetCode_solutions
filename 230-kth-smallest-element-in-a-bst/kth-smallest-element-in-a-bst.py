@@ -11,9 +11,11 @@ class Solution:
         def dfs(node):
             if len(res) == k or not(node):
                 return
-            dfs(node.left)
-            res.append(node.val)
-            dfs(node.right)
+            
+            if len(res) < k:
+                dfs(node.left)
+                res.append(node.val)
+                dfs(node.right)
         dfs(root)
         return res[k-1]
         
