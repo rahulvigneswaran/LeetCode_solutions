@@ -31,7 +31,8 @@ class WordDictionary:
             return dfs(node, ind+1)
         
         return dfs(self, 0)
-  # Same as trie. Do a dfs. If we encounter ".", then run DFS for all children          
+  # Same as trie. Do a dfs. If we encounter ".", then run DFS for all children    
+  # Optimised solution : O(n)      
 
 
 # Your WordDictionary object will be instantiated and called as such:
