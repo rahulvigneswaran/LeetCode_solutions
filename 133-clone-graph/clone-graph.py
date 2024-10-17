@@ -20,3 +20,7 @@ class Solution:
             return clone[node]
 
         return dfs(node) if node else None
+
+# Create clone empty hashmap. Do DFS and traverse through each node and its neighbours. If its already in clone, return that, else create empty node with val copied over and add to clone hashmap.
+
+# Optimized solution >> Time : O(v+e). Space : O(v+e)
