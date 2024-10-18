@@ -14,3 +14,5 @@ class Solution:
         return dp[0]
 
 # Go from last to first. The sub problem is ways the next index can be decoded. If its single, then the values is same as i+1. If its double, then the values is i+1 and i+2. For double, use the first and second digit to narrow down the comparison.
+# Time Complexity >> O(n)
+# Space Complexity >> O(1)
