@@ -15,6 +15,7 @@ class Solution:
             dirs = [[1,0],[0,1],[-1,0],[0,-1]]
             for dr, dc in dirs:
                 dfs(R+dr, C+dc)
+        
         for r in range(ROWS):
             for c in range(COLS):
                 if grid[r][c] != "0" and (r,c) not in visited:
@@ -22,3 +23,5 @@ class Solution:
                     dfs(r, c)
         
         return res
+
+# Time complexity >> O(mn*4^(mn))
