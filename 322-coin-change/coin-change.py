@@ -10,7 +10,7 @@ class Solution:
         
         return dp[amount] if dp[amount] != amount+1 else -1
 
-# we have to calculate the minimum coin for all amount ranging from 0 to the amount. We will check for all coins at each index and keep the minimum of whether to use the coin or not to use. If we use the coin, then we do 1+dp[a-c]. Basically dp[a] = min(dp[a], 1+dp[a-c])
+# We have to calculate the minimum coin for all amount ranging from 0 to the amount. We will check for all coins at each index and keep the minimum of whether to use the coin or not to use. If we use the coin, then we do 1+dp[a-c]. Basically dp[a] = min(dp[a], 1+dp[a-c])
 
 # Time complexity >> O(n*m)
 # Space complexity >> O(n)
