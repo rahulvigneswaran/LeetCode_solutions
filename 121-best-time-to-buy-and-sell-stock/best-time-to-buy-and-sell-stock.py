@@ -1,18 +1,23 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        if len(prices) == 1:
+        # base
+        if len(prices) < 2:
             return 0
         
-        l, r = 0, 1
-        max_profit = 0
-        while (l<len(prices) and r<len(prices)):
-            diff = prices[r] - prices[l]
-            if diff < 0:
-                l = r
-                r = l+1
-            elif max_profit < diff:
-                max_profit = diff
-                r += 1
+        L = 0
+        R = 1
+        maxProfit = 0
+        while L < R and R < len(prices):
+            if prices[L] > prices[R]:
+                L=R
             else:
-                r += 1
-        return max_profit
+                maxProfit = max(maxProfit, prices[R]-prices[L])
+            R+=1
+        return maxProfit
+
+# Buy low, sell high. Whenever right is smalller than left, make L=R. If right is greater than left, increment R.
+
+# Time complexity >> o(n)
+# Space complexity >> O(1)
+
+
