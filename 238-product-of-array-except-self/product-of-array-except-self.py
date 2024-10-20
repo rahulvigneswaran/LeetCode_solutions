@@ -11,10 +11,11 @@ class Solution:
         for i in range(len(nums)-1, -1, -1):
             res[i] *= cumNum
             cumNum *= nums[i]
-
+        return res
+        
 # Time >> O(n)
 # Space >> O(n)
         
-        return res
+
 
         
