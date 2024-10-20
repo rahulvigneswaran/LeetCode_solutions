@@ -1,13 +1,14 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        if len(nums) == 2:
-            return [0,1]
-            
-        memory = {}
-        for ind in range(len(nums)):
-            remain = target - nums[ind]
-            ans = memory.get(remain, -1)
-            if ans < 0:
-                memory[nums[ind]] = ind
+        preDict = {}
+
+        for ind, n in enumerate(nums):
+            diff = target - n
+            if diff in preDict:
+                return [preDict[diff], ind]
             else:
-                return [ans, ind]
+                preDict[n] = ind
+        return None
+
+# Time complexity >> O(n)
+# Space complexity >> O(n)
