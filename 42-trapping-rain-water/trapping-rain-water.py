@@ -1,23 +1,19 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
-        leftMax = []
-        rightMax = []
+        if not height: return 0
+        
         res = 0
+        leftMax, rightMax = height[0], height[-1]
+        L, R = 0, len(height)-1
         
-        maxVal = float("-inf")
-        for l in height:
-            if l > maxVal:
-                maxVal = l
-            leftMax.append(maxVal)
-        
-        maxVal = float("-inf")
-        for ind in range(len(height)-1, -1, -1):
-            r = height[ind]
-            if r > maxVal:
-                maxVal = r
-            rightMax.append(maxVal)
-        
-        for ind in range(len(height)):
-            res += max(0, min(leftMax[ind], rightMax[len(rightMax)-ind-1]) - height[ind])
-        
+        while L < R:
+            if leftMax < rightMax:
+                L += 1
+                leftMax = max(leftMax, height[L]) # to prevent negative
+                res += leftMax - height[L]
+            else:
+                R -= 1
+                rightMax = max(rightMax, height[R]) # to prevent negative
+                res += rightMax - height[R]
         return res
+
