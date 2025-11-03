@@ -18,6 +18,7 @@ class Solution:
             helper(r, c+1)
             helper(r, c-1)
         
+        # capture the border regions
         for r in range(ROWS):
             if board[r][0] == "O":
                 helper(r, 0)
@@ -30,7 +31,7 @@ class Solution:
             if board[-1][c] == "O":
                 helper(ROWS-1, c)
 
-        # traverse through all to make surrounded as "X" and revert non sourroudn back
+        # make non borded regions as surrounded and borded regions back to O
         for r in range(ROWS):
             for c in range(COLS):
                 if board[r][c] == "O":
