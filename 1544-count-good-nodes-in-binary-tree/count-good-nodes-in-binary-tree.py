@@ -8,6 +8,7 @@ class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         res = [0]
 
+        # dfs
         def helper(node, prev_max):
             if not node:
                 return
