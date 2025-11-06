@@ -1,7 +1,6 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         res = []
-        subset = []
 
         #dfs
         def helper(ind, subset):
