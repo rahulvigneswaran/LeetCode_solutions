@@ -9,19 +9,35 @@ class Node:
 
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        memory = {None: None}
+        if not head:
+            return None
+        #interleave original and copy
+        l1 = head
+        while l1:
+            l2 = Node(l1.val)
+            l2.next = l1.next
+            l1.next = l2
 
-        curr = head
-        # just make a copy of everything. dont worry about mapping
-        while curr:
-            memory[curr] = ListNode(curr.val)
-            curr = curr.next
+            l1 = l2.next
         
-        curr = head
-        while curr:
-            memory[curr].next = memory[curr.next]
-            memory[curr].random = memory[curr.random]
-            curr = curr.next
+        # connect the randoms of copy
+        l1 = head
+        while l1:
+            if l1.random:
+                l1.next.random = l1.random.next
+            l1 = l1.next.next
         
-        return memory[head]
+        # disconnect original and duplicate
+        l1 = head
+        l2 = l1.next
+        dummy = l2
+        while l1:
+            l1.next = l2.next
+            
+            if l2.next:
+                l2.next = l2.next.next
+
+            l1 = l1.next
+            l2 = l2.next
         
+        return dummy
