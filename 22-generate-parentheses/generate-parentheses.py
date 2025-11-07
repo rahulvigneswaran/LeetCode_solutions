@@ -20,3 +20,7 @@ class Solution:
         
         helper(0, 0)
         return res
+
+        # 1) return when openN = closeN = n
+        # 2) append "(" when openN < n
+        # 3) append ")" when closeN < openN
