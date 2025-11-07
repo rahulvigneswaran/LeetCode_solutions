@@ -1,21 +1,15 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        res = []
-        subset = []
 
-        def helper(leftover_nums):
-            if not leftover_nums:
-                res.append(subset.copy())
-                return 
-                        
-            for i in range(len(leftover_nums)):            
-                num = leftover_nums.pop(i)
-                subset.append(num)
-                helper(leftover_nums)
-                subset.pop()
-                leftover_nums.insert(i, num)
+        perms = [[]]
+
+        for n in nums:
+            new_perms = []
+            for p in perms:
+                for i in range(len(p) + 1):
+                    p_copy = p.copy()
+                    p_copy.insert(i, n)
+                    new_perms.append(p_copy)
+            perms = new_perms
         
-        helper(nums)
-        
-        return res
-            
+        return perms
