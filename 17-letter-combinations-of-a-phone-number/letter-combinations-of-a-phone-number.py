@@ -3,7 +3,7 @@ class Solution:
         # have a mapping
         # simply just do a dfs. pop when coming out. better to using wording node, child
         # naive - backtracking
-        # time : O(4^N)
+        # time : O(N*4^N)
         mapping = {
                     2: "abc",
                     3: "def",
