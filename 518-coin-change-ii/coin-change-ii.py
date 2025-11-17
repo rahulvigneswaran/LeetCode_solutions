@@ -18,43 +18,22 @@ class Solution:
         # return dfs(0, coins)
 
         # memoization
-        # memo = {}
-        # coins.sort()
-        # def dfs(target, coinInd):
-        #     # base cases
-        #     if target == amount:
-        #         return 1
-        #     if target > amount or coinInd == len(coins):
-        #         return 0
-            
-        #     if (target, coinInd) in memo:
-        #         return memo[(target, coinInd)]
-
-        #     res = 0
-        #     for c in range(coinInd, len(coins)):
-        #         res += dfs(target+coins[c], c)
-            
-        #     memo[(target, coinInd)] = res
-        #     return res
-        
-        # return dfs(0, 0)
+        memo = {}
         coins.sort()
-        memo = [[-1] * (amount + 1) for _ in range(len(coins) + 1)]
-
-        def dfs(i, a):
-            if a == 0:
+        def dfs(target, coinInd):
+            # base cases
+            if target == amount:
                 return 1
-            if i >= len(coins):
+            if target > amount or coinInd == len(coins):
                 return 0
-            if memo[i][a] != -1:
-                return memo[i][a]
-
-            res = 0
-            if a >= coins[i]:
-                res = dfs(i + 1, a)
-                res += dfs(i, a - coins[i])
-
-            memo[i][a] = res
+            
+            if (target, coinInd) in memo:
+                return memo[(target, coinInd)]
+            
+            # recursion statement
+            res = dfs(target, coinInd + 1) + dfs(target+coins[coinInd], coinInd)
+            
+            memo[(target, coinInd)] = res
             return res
-
-        return dfs(0, amount)
+        
+        return dfs(0, 0)
