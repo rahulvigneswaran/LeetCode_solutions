@@ -34,29 +34,33 @@ class Solution:
 
 
         # bottom-up
+        total = sum(nums)
+        n = len(nums)
 
         # edge cases
-        if sum(nums) % 2 != 0:
+        if total % 2 != 0:
             return False
 
-        target = sum(nums) // 2
+        target = total // 2
         
         # grid
-        tab = [[False]*(target + 1) for _ in range(len(nums)+1)]
+        tab = [[False]*(target + 1) for _ in range(n+1)]
 
         # prefill base conditions
-        for i in range(len(nums)+1):
+        for i in range(n+1):
             tab[i][0] = True
 
         # iteration
-        for n in range(1, len(nums)+1):
-            for capacity in range(1, target+1): 
-                if nums[n-1] <= capacity:
-                    tab[n][capacity] = tab[n-1][capacity] or tab[n-1][capacity - nums[n-1]]
+        for i in range(1, n+1):
+            for j in range(1, target+1): 
+                if nums[i-1] <= j:
+                    tab[i][j] = tab[i-1][j] or tab[i-1][j - nums[i-1]]
                 else:
-                    tab[n][capacity] = tab[n-1][capacity]
+                    tab[i][j] = tab[i-1][j]
                 
-        return tab[len(nums)][target]
+        return tab[n][target]
+
+        
 
 
                      
