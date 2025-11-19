@@ -1,12 +1,12 @@
 class Solution:
     def findFinalValue(self, nums: List[int], original: int) -> int:
-        nums.sort()
+        
         # naive
-        while True:
-            if original in nums:
+        nums.sort()
+        for n in nums:
+            if n == original:
                 original *= 2
-            else:
-                return original
+        return original
 
         # hash set
         # L = 0
