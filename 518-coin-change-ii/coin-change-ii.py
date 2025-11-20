@@ -40,46 +40,51 @@ class Solution:
 
         # tabulation
 
-        # dims
-        COLS = amount + 1
-        ROWS = len(coins) + 1
-        # table
-        tab = [[0]*COLS for _ in range(ROWS) ]
+        # # dims
+        # COLS = amount + 1
+        # ROWS = len(coins) + 1
+        # # table
+        # tab = [[0]*COLS for _ in range(ROWS) ]
 
-        # base conditions
-        for i in range(ROWS):
-            tab[i][COLS-1] = 1
+        # # base conditions
+        # for i in range(ROWS):
+        #     tab[i][COLS-1] = 1
 
-        # iterations last -> first
+        # # iterations last -> first
 
-        for coinInd in range(ROWS - 2, -1, -1):
-            for target in range(COLS - 1, -1, -1):
-                rightVal = 0
-                right = target+coins[coinInd]
-                if right <= COLS-1:
-                    rightVal = tab[coinInd][right]
-                tab[coinInd][target] = tab[coinInd + 1][target] + rightVal
+        # for coinInd in range(ROWS - 2, -1, -1):
+        #     for target in range(COLS - 1, -1, -1):
+        #         rightVal = 0
+        #         right = target+coins[coinInd]
+        #         if right <= COLS-1:
+        #             rightVal = tab[coinInd][right]
+        #         tab[coinInd][target] = tab[coinInd + 1][target] + rightVal
         
-        return tab[0][0]
+        # return tab[0][0]
         
         # tabulation (Space optimized)
         # dims
         COLS = amount + 1
         ROWS = len(coins) + 1
         # table
-        prev = [0]*COLS
+        # tab = [[0]*COLS for _ in range(ROWS) ]
+
+        # base conditions
+        # for i in range(ROWS):
+        #     tab[i][COLS-1] = 1
 
         # iterations last -> first
-
+        prev = [0]*COLS
+        prev[-1] = 1
         for coinInd in range(ROWS - 2, -1, -1):
             curr = [0]*COLS
-            curr[-1] = 1
             for target in range(COLS - 1, -1, -1):
                 rightVal = 0
                 right = target+coins[coinInd]
                 if right <= COLS-1:
                     rightVal = curr[right]
                 curr[target] = prev[target] + rightVal
+            prev = curr
         
         return curr[0]
         
