@@ -32,21 +32,43 @@ class Solution:
         # return dfs(0, 0)
         
         # Tabulation
+        # # dims
+        # ROWS = len(nums) + 1
+        # COLS = sum(nums) + 1 #target + 1
+        
+        # # table
+        # tab = [defaultdict(int) for _ in range(ROWS)]
+
+        # # base condition
+        # # for r in range(ROWS):
+        # tab[len(nums)][target] = 1
+
+        # # ROWS: last -> 0
+        # # COLS: last -> 0
+        # for r in range(ROWS-2, -1, -1):
+        #     for c in range(COLS, -COLS, -1):
+        #         tab[r][c] = tab[r+1][c + nums[r]] + tab[r+1][c - nums[r]]
+        
+        # return tab[0][0]
+
+        # Tabulation (Space Optimized)
         # dims
         ROWS = len(nums) + 1
         COLS = sum(nums) + 1 #target + 1
         
         # table
-        tab = [defaultdict(int) for _ in range(ROWS)]
+        prev = defaultdict(int)
 
         # base condition
         # for r in range(ROWS):
-        tab[len(nums)][target] = 1
+        prev[target] = 1
 
         # ROWS: last -> 0
         # COLS: last -> 0
         for r in range(ROWS-2, -1, -1):
+            curr = defaultdict(int)
             for c in range(COLS, -COLS, -1):
-                tab[r][c] = tab[r+1][c + nums[r]] + tab[r+1][c - nums[r]]
+                curr[c] = prev[c + nums[r]] + prev[c - nums[r]]
+            prev = curr
         
-        return tab[0][0]
+        return curr[0]
