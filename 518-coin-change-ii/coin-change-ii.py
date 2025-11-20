@@ -62,3 +62,24 @@ class Solution:
         
         return tab[0][0]
         
+        # tabulation (Space optimized)
+        # dims
+        COLS = amount + 1
+        ROWS = len(coins) + 1
+        # table
+        prev = [0]*COLS
+
+        # iterations last -> first
+
+        for coinInd in range(ROWS - 2, -1, -1):
+            curr = [0]*COLS
+            curr[-1] = 1
+            for target in range(COLS - 1, -1, -1):
+                rightVal = 0
+                right = target+coins[coinInd]
+                if right <= COLS-1:
+                    rightVal = curr[right]
+                curr[target] = prev[target] + rightVal
+        
+        return curr[0]
+        
