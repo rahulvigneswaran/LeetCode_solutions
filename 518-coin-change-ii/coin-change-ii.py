@@ -66,12 +66,6 @@ class Solution:
         # dims
         COLS = amount + 1
         ROWS = len(coins) + 1
-        # table
-        # tab = [[0]*COLS for _ in range(ROWS) ]
-
-        # base conditions
-        # for i in range(ROWS):
-        #     tab[i][COLS-1] = 1
 
         # iterations last -> first
         prev = [0]*COLS
