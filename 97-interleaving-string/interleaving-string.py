@@ -67,7 +67,7 @@ class Solution:
         # return tab[0][0]
 
 
-
+        # Tabulation (Space optimized)
         # dims
         ROWS = len(s1) + 1
         COLS = len(s2) + 1
@@ -92,29 +92,3 @@ class Solution:
             prev = curr
                 
         return prev[0]
-
-        # Tabulation (Space optimized)
-        #         # dims
-        # ROWS = len(s1) + 1
-        # COLS = len(s2) + 1
-        
-
-        # # Table
-        # prev = [False]*COLS
-
-        # # base conditions
-        # prev[COLS-1] = True
-        # for c in range(COLS - 2, -1, -1):
-        #     prev[c] = prev[c+1] and s2[c] == s3[len(s1) + c]
-
-        # for r in range(ROWS - 2, -1, -1):
-        #     curr = [False]*COLS
-        #     for c in range(COLS - 1 , -1, -1):
-        #         if r < len(s1) and s1[r] == s3[r+c]:
-        #             curr[c] = prev[c]
-                
-        #         if not curr[c] and c < len(s2) and s2[c] == s3[r+c]:
-        #             curr[c] = curr[c+1]
-                
-        #     prev = curr
-        # return prev[0]
