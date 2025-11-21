@@ -42,3 +42,6 @@ class Solution:
             res+= len(set(s[L+1:R]))
 
         return res
+
+
+        
