@@ -6,7 +6,6 @@ class Solution:
             if nums[i] != prev: # start of uniq
                 nums[uniq_ind] = nums[i]
                 prev = nums[i]
-                cand_count = 1
                 uniq_ind += 1
                 flag = True
             elif flag:
