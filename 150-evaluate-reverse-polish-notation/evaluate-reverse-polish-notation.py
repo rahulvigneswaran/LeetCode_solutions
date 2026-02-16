@@ -4,8 +4,8 @@ class Solution:
 
         for i in tokens:
             if i in "*+/-":
-                b = int(stack.pop())
-                a = int(stack.pop())
+                b = stack.pop()
+                a = stack.pop()
                 if i == "*":
                     c = a * b 
                 elif i =="/":
@@ -16,5 +16,5 @@ class Solution:
                     c = a - b
                 stack.append(c)
             else:
-                stack.append(i)
-        return int(stack.pop())
+                stack.append(int(i))
+        return stack.pop()
