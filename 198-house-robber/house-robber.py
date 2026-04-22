@@ -29,12 +29,12 @@ class Solution:
         # return helper(0)
 
         # tab
-        tab = [0]*(len(nums)+2)
+        # tab = [0]*(len(nums)+2)
 
-        for i in range(len(nums)-1, -1, -1):
-            tab[i] = max(tab[i+1], tab[i+2]+nums[i])
+        # for i in range(len(nums)-1, -1, -1):
+        #     tab[i] = max(tab[i+1], tab[i+2]+nums[i])
         
-        return tab[0]
+        # return tab[0]
 
         # tab (space optimized)
         num2, num1 = 0, 0
