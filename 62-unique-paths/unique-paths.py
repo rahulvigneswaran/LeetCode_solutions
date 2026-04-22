@@ -47,15 +47,24 @@ class Solution:
         # return tab[0][0]
 
         # tab (space optimized)
-        prevtab = [1]*(n+1)
+        # prevtab = [1]*(n+1)
+
+        # for _ in range(m-2, -1, -1):
+        #     currtab = [0]*(n+1)
+        #     for C in range(n-1, -1, -1):
+        #         currtab[C] = prevtab[C] + currtab[C+1]
+        #     prevtab = currtab
+        
+        # return prevtab[0]
+
+        # tab (more space optimized)
+        tab = [1]*(n+1)
+        tab[-1] = 0
 
         for _ in range(m-2, -1, -1):
-            currtab = [0]*(n+1)
             for C in range(n-1, -1, -1):
-                currtab[C] = prevtab[C] + currtab[C+1]
-            prevtab = currtab
-        
-        return prevtab[0]
+                tab[C] = tab[C] + tab[C+1]        
+        return tab[0]
         
 
         
