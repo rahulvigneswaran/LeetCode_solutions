@@ -1,84 +1,40 @@
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
-
-        # recursive
-        # def dfs(target, coinsLeft):
-        #     # base cases
-        #     if target == amount:
+        # naive recursion
+        # def helper(ind, total):
+        #     if amount == total:
         #         return 1
-        #     if target > amount:
+        #     if total > amount or ind == len(coins):
         #         return 0
+
+        #     # include
+        #     a = helper(ind, total + coins[ind])
+
+        #     # skip
+        #     b = helper(ind+1, total)
+
+        #     return a + b
+        
+        # return helper(0, 0)
+        
+        # memo
+        memo = {}
+        def helper(ind, total):
+            if amount == total:
+                return 1
+            if total > amount or ind == len(coins):
+                return 0
+
+            if (ind, total) in memo:
+                return memo[(ind, total)]
+
+            # include
+            a = helper(ind, total + coins[ind])
+
+            # skip
+            b = helper(ind+1, total)
             
-        #     res = 0
-        #     for c in range(len(coinsLeft)):
-        #         res += dfs(target+coinsLeft[c], coinsLeft[c:])
-            
-        #     return res
+            memo[(ind, total)] = a + b
+            return a + b
         
-        # return dfs(0, coins)
-
-        # memoization
-        # memo = {}
-        # coins.sort()
-        # def dfs(target, coinInd):
-        #     # base cases
-        #     if target == amount:
-        #         return 1
-        #     if target > amount or coinInd == len(coins):
-        #         return 0
-            
-        #     if (target, coinInd) in memo:
-        #         return memo[(target, coinInd)]
-            
-        #     # recursion statement
-        #     res = dfs(target, coinInd + 1) + dfs(target+coins[coinInd], coinInd)
-            
-        #     memo[(target, coinInd)] = res
-        #     return res
-        
-        # return dfs(0, 0)
-
-        # tabulation
-
-        # # dims
-        # COLS = amount + 1
-        # ROWS = len(coins) + 1
-        # # table
-        # tab = [[0]*COLS for _ in range(ROWS) ]
-
-        # # base conditions
-        # for i in range(ROWS):
-        #     tab[i][COLS-1] = 1
-
-        # # iterations last -> first
-
-        # for coinInd in range(ROWS - 2, -1, -1):
-        #     for target in range(COLS - 1, -1, -1):
-        #         rightVal = 0
-        #         right = target+coins[coinInd]
-        #         if right <= COLS-1:
-        #             rightVal = tab[coinInd][right]
-        #         tab[coinInd][target] = tab[coinInd + 1][target] + rightVal
-        
-        # return tab[0][0]
-        
-        # tabulation (Space optimized)
-        # dims
-        COLS = amount + 1
-        ROWS = len(coins) + 1
-
-        # iterations last -> first
-        prev = [0]*COLS
-        prev[-1] = 1
-        for coinInd in range(ROWS - 2, -1, -1):
-            curr = [0]*COLS
-            for target in range(COLS - 1, -1, -1):
-                rightVal = 0
-                right = target+coins[coinInd]
-                if right <= COLS-1:
-                    rightVal = curr[right]
-                curr[target] = prev[target] + rightVal
-            prev = curr
-        
-        return curr[0]
-        
+        return helper(0, 0)
